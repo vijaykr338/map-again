@@ -15,8 +15,11 @@
   import SideWindow from "./components/SideWindow";
 
 
-
+  //insert your own api key here
   const API_KEY = process.env.GOOGLE_MAPS_API_KEY
+
+  //https://visgl.github.io/react-google-maps/docs/get-started
+  //a lot of examples were taken from here
 
   const App = () => {
     const [parkingData, setParkingData] = useState([])
@@ -30,8 +33,9 @@
         <div className="relative w-screen h-screen">
           <Map
             style={{ width: "100vw", height: "100vh" }}
+            //this width is necessary for map working
             mapId={"e43f831b5ad9c238"}
-            // mapId={"fe442564d6c0b923"}
+            // mapId={"fe442564d6c0b923"} to restore map markers
             defaultZoom={3}
             defaultCenter={{ lat: 22.54992, lng: 0 }}
             gestureHandling={"greedy"}
@@ -53,6 +57,9 @@
 
   const MapHandler = ({ place, marker }) => {
     const map = useMap();
+    //for working with maps 
+    //the usual format is https://visgl.github.io/react-google-maps/docs/get-started
+    //see the hooks part
 
     useEffect(() => {
       if (!map || !place || !marker) return;
@@ -71,6 +78,7 @@
   const NearbyPlaces = ({ place, setParkingData }) => {
     const map = useMap();
     const placesLib = useMapsLibrary("places");
+    //Places API is our bread and butter for working
     const [nearbyMarkers, setNearbyMarkers] = useState([]);
     const [activeMarker, setActiveMarker] = useState(null);
     const [infoContent, setInfoContent] = useState(null);
