@@ -11,7 +11,7 @@ const InformationWindow = ({parkingID}) => {
   }
   
   return (
-    <div className='bg-white'>
+    <div className=''>
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos repudiandae, exercitationem esse natus ea suscipit labore expedita quidem fuga recusandae hic aliquam ipsam possimus debitis atque itaque sint consequatur quo!
     </div>
   )

@@ -19,7 +19,7 @@ const ParkingSpots = ({parkingData}) => {
   
        
   return (
-    <div className='space-y-5 h-screen w-full'>
+    <div className='space-y-5 h-screen'>
 
       {
         parkingData && parkingData.map((parking)=> {

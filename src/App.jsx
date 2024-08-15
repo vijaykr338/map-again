@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
+import InformationWindow from "./components/InformationWindow";
 import { InfoWindow } from "@vis.gl/react-google-maps";
 import {
   APIProvider,
@@ -29,7 +30,7 @@ const App = () => {
       solutionChannel="GMP_devsite_samples_v3_rgmautocomplete"
     >
       <div className="relative h-screen overflow-hidden">
-        <div className="absolute top-0 left-1/3 w-2/3 h-full">
+        <div className="absolute top-0  h-full">
           <Map
             style={{ width: "100vw", height: "100vh" }}
             //this width is necessary for map working
@@ -63,11 +64,17 @@ const App = () => {
           <MapHandler place={selectedPlace} marker={marker} />
         </div>
 
-        <div className="absolute top-0 left-0 w-1/3 h-full z-10">
-          <SideWindow
+        <div className="flex w-2/3 absolute top-0 left-0 h-full z-10">
+         <div className="w-[600px]">
+           <SideWindow
             onPlaceSelect={setSelectedPlace}
             parkingData={parkingData}
           />
+         </div>
+         
+          <div className="w-[600px] bg-white h-screen">
+          <InformationWindow/>
+          </div>
         </div>
       </div>
     </APIProvider>
