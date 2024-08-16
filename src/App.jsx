@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import InformationWindow from "./components/InformationWindow";
 import { InfoWindow } from "@vis.gl/react-google-maps";
+
 import {
   APIProvider,
   ControlPosition,
@@ -13,6 +14,7 @@ import {
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 import SideWindow from "./components/SideWindow";
+import useParkingStore from "./components/parkingStoreContext";
 
 //insert your own api key here
 const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
@@ -24,6 +26,7 @@ const App = () => {
   const [parkingData, setParkingData] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
+  const isInfoWindowOpen = useParkingStore((state)=> state.isInfoWindowOpen)
   return (
     <APIProvider
       apiKey={API_KEY}
@@ -72,9 +75,10 @@ const App = () => {
           />
          </div>
          
-          <div className="w-[600px] bg-white h-screen">
+         { isInfoWindowOpen && <div className="w-[600px] bg-white h-screen">
           <InformationWindow/>
           </div>
+         } 
         </div>
       </div>
     </APIProvider>

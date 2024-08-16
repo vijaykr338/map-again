@@ -4,17 +4,26 @@ import { FaWalking } from "react-icons/fa";
 import anime from '../assets/anime.jpg'
 import boiler from '../assets/default.jpg'
 import InformationWindow from './InformationWindow';
+import useParkingStore from './parkingStoreContext';
+
 
 const ParkingSpots = ({parkingData}) => {
 
-  const [parkingID, setParkingID] = useState('');
-  const [infoWindow, setInfoWindow] = useState(false);
+  const setSelectedParkingID = useParkingStore((state)=> state.setSelectedParkingID)
+  const setInfoWindowOpen = useParkingStore((state)=> state.setInfoWindowOpen)
+  const isInfoWindowOpen = useParkingStore((state)=> state.isInfoWindowOpen)
+  const selectedParkingID = useParkingStore((state) => state.selectedParkingID);
 
   const ParkingSpotClickHandler = (place_id) => {
-    setParkingID(place_id)
-    console.log(parkingID)
-    setInfoWindow(!infoWindow);
-    console.log(infoWindow)
+    if(selectedParkingID !== place_id){
+       setSelectedParkingID(place_id)
+    setInfoWindowOpen(true)
+    }
+    else{
+      setInfoWindowOpen(!isInfoWindowOpen)
+    }
+   
+    console.log(place_id)
   }
   
        
